@@ -1,0 +1,18 @@
+version: "3.4"
+
+services:
+  task-manager:
+    image: henriquemazzoleni/task-manager
+    build: .
+    ports:
+      - 3000:3000
+
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - data:/data/db
+
+volumes:
+  data:
