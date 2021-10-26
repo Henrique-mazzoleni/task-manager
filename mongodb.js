@@ -10,20 +10,5 @@ MongoClient.connect(
     if (error) return console.log("Unable to connect to server");
 
     const db = client.db(databaseName);
-
-    db.collection("tasks").findOne(
-      { _id: new ObjectId("617805521cedd02cadb74c8d") },
-      (error, task) => {
-        if (error) return console.log("Unable to fetch data");
-        console.log(task);
-      }
-    );
-
-    db.collection("tasks")
-      .find({ completed: false })
-      .toArray((error, data) => {
-        if (error) return console.log("Unable to fetch data");
-        console.log(data);
-      });
   }
 );
