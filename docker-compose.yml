@@ -4,9 +4,12 @@ services:
   task-manager:
     image: henriquemazzoleni/task-manager
     build: .
+    environment:
+      NODE_ENV: production
     ports:
       - 3000:3000
-
+    volumes:
+      - .:/usr/src/app
   mongodb:
     image: mongo
     ports:

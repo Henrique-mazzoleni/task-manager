@@ -1,5 +1,4 @@
-const mongodb = require("mongodb");
-const MongoClient = mongodb.MongoClient;
+const { MongoClient, ObjectId } = require("mongodb");
 
 const connectionURL = "mongodb://mongodb:27017";
 const databaseName = "task-manager";
@@ -12,53 +11,19 @@ MongoClient.connect(
 
     const db = client.db(databaseName);
 
-    db.collection("users").insertOne(
-      {
-        name: "Herique",
-        age: 37,
-      },
-      (error, result) => {
-        if (error) return console.log("Unable to insert user");
-        console.log(result);
+    db.collection("tasks").findOne(
+      { _id: new ObjectId("617805521cedd02cadb74c8d") },
+      (error, task) => {
+        if (error) return console.log("Unable to fetch data");
+        console.log(task);
       }
     );
 
-    db.collection("users").insertMany(
-      [
-        {
-          name: "Annia",
-          age: 37,
-        },
-        {
-          name: "Gabriella",
-          age: 0,
-        },
-      ],
-      (error, result) => {
-        if (error) return console.log("Unable to insert documents");
-        console.log(result);
-      }
-    );
-
-    db.collection("tasks").insertMany(
-      [
-        {
-          description: "comprar capa bike",
-          completed: false,
-        },
-        {
-          description: "buscar passaporte Gabriella",
-          completed: false,
-        },
-        {
-          description: "cobrar passaporte Italiano",
-          completed: true,
-        },
-      ],
-      (error, result) => {
-        if (error) return console.log("Unable to insert documents");
-        console.log(result);
-      }
-    );
+    db.collection("tasks")
+      .find({ completed: false })
+      .toArray((error, data) => {
+        if (error) return console.log("Unable to fetch data");
+        console.log(data);
+      });
   }
 );
