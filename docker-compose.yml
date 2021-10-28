@@ -4,8 +4,6 @@ services:
   task-manager:
     image: henriquemazzoleni/task-manager
     build: .
-    # environment:
-    # NODE_ENV: development
     ports:
       - 3000:3000
     volumes:

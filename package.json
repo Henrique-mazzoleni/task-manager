@@ -9,7 +9,7 @@
     "nodemon": "1.18.9"
   },
   "scripts": {
-    "start": "node src/index.js",
+    "start": "nodemon src/playground/promise-chaining2.js",
     "dev": "nodemon src/index.js"
   }
 }
