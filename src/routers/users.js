@@ -6,9 +6,9 @@ const auth = require("../midleware/auth");
 router.post("/users", async (req, res) => {
   const user = new User(req.body);
   try {
-    await user.generateAuthToken();
+    const token = await user.generateAuthToken();
     await user.save();
-    res.status(201).send({ user });
+    res.status(201).send({ user, token });
   } catch (error) {
     res.status(400).send(error);
   }
@@ -20,8 +20,8 @@ router.post("/users/login", async (req, res) => {
       req.body.email,
       req.body.password
     );
-    await user.generateAuthToken();
-    res.send({ user });
+    const token = await user.generateAuthToken();
+    res.send({ user, token });
   } catch (error) {
     res.status(400).send();
   }
