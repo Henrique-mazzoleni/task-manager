@@ -3,9 +3,6 @@ const router = express.Router();
 const User = require("../models/user");
 const auth = require("../midleware/auth");
 const multer = require("multer");
-const upload = multer({
-  dest: "images/avatar",
-});
 
 router.post("/users", async (req, res) => {
   const user = new User(req.body);
@@ -79,6 +76,20 @@ router.delete("/users/me", auth, async (req, res) => {
   } catch (error) {
     res.status(500).send();
   }
+});
+
+const upload = multer({
+  dest: "images/avatar",
+  limits: {
+    fileSize: 1000000,
+  },
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/))
+      return cb(
+        new Error("file format unsuported. Plese use jpg, jpeg or png.")
+      );
+    cb(undefined, true);
+  },
 });
 
 router.post("/users/me/avatar", upload.single("avatar"), (req, res) => {
