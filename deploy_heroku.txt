@@ -1,0 +1,8 @@
+create heroku.yml
+
+bash
+- heroku create <app-name>
+- heroku stack:set container --app <app-name>
+- heroku config:set <env-var-name>=<env-var-value>
+- git push heroku master
+
