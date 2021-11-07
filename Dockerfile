@@ -6,4 +6,5 @@ RUN npm install && mv node_modules ../
 COPY . .
 
 # CMD ["npm", "run", "dev"]
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
+CMD ["npm", "test"]

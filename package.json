@@ -12,10 +12,16 @@
   },
   "devDependencies": {
     "dotenv": "10.0.0",
-    "nodemon": "1.18.9"
+    "nodemon": "1.18.9",
+    "jest": "27.2",
+    "supertest": "^6.1.6"
   },
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "test": "jest --watchAll"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
