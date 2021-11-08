@@ -19,7 +19,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll --runInBand"
   },
   "jest": {
     "testEnvironment": "node"
